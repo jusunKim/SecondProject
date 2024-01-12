@@ -8,6 +8,7 @@
 </head>
 <body>
 index 뭐야
+변경사항 테스
 <a href="userTest.do">테스트</a>
 </body>
 </html>
