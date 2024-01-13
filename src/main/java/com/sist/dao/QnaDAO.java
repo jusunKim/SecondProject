@@ -63,19 +63,20 @@ public class QnaDAO {
 		return re;
 	}
 	
-	//<내 문의사항> 마이페이지 들어가면 처음 뜨는 거. 문의제목, 문의내용, 문의날짜
+	//<내 문의사항> 마이페이지 들어가면 처음 뜨는 거.문의번호, 문의제목, 문의내용, 문의날짜
 	public ArrayList<HashMap<String, Object>> listMyQna(int uno){
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
-		String sql = "select q_title, q_content, q_date from qna where uno=" +uno;
+		String sql = "select qno, q_title, q_content, q_date from qna where uno=" +uno;
 		try {
 			Connection conn =ConnectionProvider.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("q_title", rs.getString(1));
-				map.put("q_content", rs.getString(2));
-				map.put("q_date", rs.getDate(3));
+				map.put("qno", rs.getInt(1));
+				map.put("q_title", rs.getString(2));
+				map.put("q_content", rs.getString(3));
+				map.put("q_date", rs.getDate(4));
 				list.add(map);
 			}
 			ConnectionProvider.close(conn, stmt, rs);
